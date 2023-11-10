@@ -1,54 +1,51 @@
-#include<iostream>
-#include<vector>
+#include <iostream>
 #include<algorithm>
 using namespace std;
 
-int gcd(int a, int b)
-{
-    int temp = 0;
-    while(a != 0)
-    {
-        temp = b % a;
-        b = a;
-        a = temp;
-    }
-    
-    return b;
-    
+int GCD(int a, int b){
+  int lcd = 0;
+  while(a != 0){
+    lcd = b % a;
+    b = a;
+    a = lcd;
+  }
+  
+  return b;
 }
 
-
-int main()
-{
-    ios::sync_with_stdio(0);
-    cin.tie(0);cout.tie(0);
-    
-    int n = 0;
-    cin >> n;
-    int temp = 0;
-    int count = 0;
-    vector<int> vec;
-    vector<int> m_vec;
-    sort(vec.begin(),vec.end());
-    for(int i =0; i < n; i++)
-    {
-        cin >> temp;
-        vec.push_back(temp);
-    }
-    
-    for(int i = 0; i < n -1; i++)
-    {
-        temp = vec[i+1] - vec[i];
-        m_vec.push_back(temp);
-    }
-    
-    
-    int bet = gcd(m_vec[0], m_vec[1]);
-    
-    for(int i =0 ; i < n - 1; i++)
-    {
-        count += ((m_vec[i])/bet - 1);   
-    }
-    
-    cout << count;
+int main() {
+  
+  int N;
+  cin >> N;
+  
+  int arr[100005] = {0};
+  int Marr[100005] = {0};
+  
+  
+  for(int i = 0; i < N; i++){
+    cin >> arr[i];
+  }
+  
+  //sort(arr, arr+N);
+  
+  for(int i = 0; i < N- 1; i++){
+    Marr[i] = arr[i+1] - arr[i];
+  }
+  
+  int gcd = Marr[0];
+  
+  for(int i = 1; i < N-1; i++){
+    gcd = GCD(gcd, Marr[i]);
+  }
+  
+  
+  int count = 0;
+  
+  for(int i = 0; i < N - 1; i++){
+    count += (Marr[i]/gcd - 1);
+  }
+  
+  cout << count;
+  
+  return 0;
 }

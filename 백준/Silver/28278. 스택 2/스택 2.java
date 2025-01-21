@@ -19,7 +19,7 @@ public class Main
                 String[] st = ins.split(" ");
                 in = Integer.parseInt(st[0]);
                 x = Integer.parseInt(st[1]);
-                run(in,x);
+                add(x);
             }
             else{
                 in = Integer.parseInt(ins);
@@ -62,41 +62,7 @@ public class Main
         }
         
 	}
-	public static void run(int ins, int x){
-	    switch(ins){
-                case 1:
-                    stack.add(x);
-                    break;
-                case 2:
-                    if(stack.isEmpty()){
-                        //비어있다면.
-                        System.out.println(-1);
-                    }
-                    else{
-                        System.out.println(stack.peek());
-                        stack.pop();
-                    }
-                    break;
-                case 3:
-                    System.out.println(stack.size());
-                    break;
-                case 4:
-                   if(stack.isEmpty()){
-                        //비어있다면.
-                        System.out.println(1);
-                    }
-                    else{
-                        System.out.println(0);
-                    }
-                    break;
-                case 5:
-                    if(!stack.isEmpty()){
-                        System.out.println(stack.peek());
-                    }
-                    else{
-                        System.out.println(-1);
-                    }
-                    break;
-        }
+	public static void add(int x){
+	    stack.add(x);
 	}
 }

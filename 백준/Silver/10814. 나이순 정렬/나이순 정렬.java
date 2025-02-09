@@ -19,9 +19,7 @@ public class Main
 	    
 	    
 	    Arrays.sort(str,(st1,st2) -> {
-	        if(Integer.parseInt(st1[0]) != Integer.parseInt(st2[0])){
-	            return Integer.parseInt(st1[0]) - Integer.parseInt(st2[0]);
-	        }
+	        
 	            return Integer.parseInt(st1[0]) - Integer.parseInt(st2[0]);
 	    });
 	    

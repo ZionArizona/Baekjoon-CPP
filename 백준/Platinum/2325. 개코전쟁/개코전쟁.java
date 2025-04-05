@@ -76,13 +76,15 @@ public class Main {
         Arrays.fill(dist, Integer.MAX_VALUE);
         dist[start] = 0;
 
-        PriorityQueue<Edge> pq = new PriorityQueue<>(Comparator.comparingInt(e -> e.weight));
+        PriorityQueue<Edge> pq = new PriorityQueue<>();
         pq.add(new Edge(start, 0));
 
         while (!pq.isEmpty()) {
             Edge cur = pq.poll();
             int now = cur.to;
-
+            
+            if(now == N) break;
+            
             for (Edge next : graph.get(now)) {
                 int to = next.to, w = next.weight;
 

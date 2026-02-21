@@ -1,59 +1,53 @@
 import java.util.*;
 import java.io.*;
 
+
 public class Main {
 	
-	static List[] com;
-	static boolean[] visited;
-	static int ans = 0;
+	static List<List<Integer>> list = new ArrayList<>();
+	static boolean[] vis;
+	static int answer = 0;
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException{
+		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
 		
-		int num = Integer.parseInt(br.readLine());
-		int connect = Integer.parseInt(br.readLine());
+		int node = Integer.parseInt(br.readLine());
+		int line = Integer.parseInt(br.readLine());
 		
-		visited = new boolean[num+1];
-		com = new List[num+1];
+		vis = new boolean[node+1];
 		
-		
-		for(int i = 0; i < num+1; i++) {
-			com[i] = new ArrayList<Integer>();
+		for(int i = 0; i <= node; i++) {
+			list.add(new ArrayList<>());
 		}
 		
-		for(int i = 0; i < connect; i++) {
+		for(int i = 0; i < line; i++) {
 			st = new StringTokenizer(br.readLine());
-			
 			int a = Integer.parseInt(st.nextToken());
 			int b = Integer.parseInt(st.nextToken());
 			
-			com[a].add(b);
-			com[b].add(a);
+			list.get(a).add(b);
+			list.get(b).add(a);
 			
 		}
 		
-		go(1);
+		dfs(1);
 		
-		System.out.println(ans - 1);
-			
-	}// main
-	
-	
-	private static void go(int vertext) {
-		
-		if(!visited[vertext]) {
-			visited[vertext] = true;
-			
-			ans++;
-			for(int i = 0; i < com[vertext].size(); i++) {
-				go((int)com[vertext].get(i));
-			}
-			
-			
-		}
-		
+		System.out.println(answer-1);
 		
 	}
 	
+	static void dfs(int node) {
+		answer++;
+		vis[node] = true;
+		
+		for(Integer n : list.get(node)) {
+			if(vis[n] != true) {
+				dfs(n);
+			}
+		}
+		
+	}
+
 }
